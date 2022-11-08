@@ -1,31 +1,23 @@
 from django.shortcuts import render, redirect
-# from .forms import StudentForm
-# from .models import Student
-# from .models import Teacher
 import requests
 from django.http import HttpResponse
 from django.contrib import messages
 
 # Create your views here.
 def index(request):
-  # students = http://127.0.0.1:1025/student/
   response = requests.get('http://127.0.0.1:1025/student/')
   students = response.json()
-  print("+++++++++++++++")
-  print(students['results'])
-  # breakpoint()
-  print("+++++++++++++++")
-  # students = Student.objects.all()
   return render(request, "student/index.html", {'students': students['results']})
-  # return render(request, "student/index.html")
 
 def new(request):
+  response = requests.get('http://127.0.0.1:1025/subject/')
+  subjects = response.json()
   # if request.user.is_authenticated:
   #   print("Logged in")
   # else:
   #   print("Not logged in")
   # teachers = Teacher.objects.all()
-  return render(request, "student/new.html")
+  return render(request, "student/new.html", {'subjects': subjects['results']})
 
 def show(request, id):
   student = find_student(request, id)
@@ -50,7 +42,11 @@ def find_student(request, id):
 
 def create(request):
   if request.method == "POST":
-    form = StudentForm(request.POST)
+    url = 'http://127.0.0.1:1025/student/'
+    payload = request.POST
+    response = requests.post(url, data = payload)
+    breakpoint()
+    students = response.json()
     if form.is_valid():
       try:
         form.save()

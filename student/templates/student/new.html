@@ -4,9 +4,6 @@
   <head>
     <meta charset="UTF-8">
     <title>Update</title>
-    <!-- {% load staticfiles %} -->
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}" />
   </head>
 
   <body>
@@ -22,36 +19,43 @@
         </div>
 
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Student Contact:</label>
+          <label class="col-sm-2 col-form-label">First Name:</label>
           <div class="col-sm-4">
-            <input type="text" name="contact" id="contact" required maxlength="15">
+            <input type="text" name="first_name" id="first_name" required maxlength="25">
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Student Address:</label>
+          <label class="col-sm-2 col-form-label">Last Name:</label>
           <div class="col-sm-4">
-            <input type="text" name="address" id="address" required maxlength="254">
+            <input type="text" name="last_name" id="last_name" required maxlength="25">
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Student Birthdate:</label>
+          <label class="col-sm-2 col-form-label">Birthdate:</label>
           <div class="col-sm-4">
             <input type="date" name="birth_date" id="birth_date">
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Class Teacher:</label>
+          <label class="col-sm-2 col-form-label">Contact:</label>
           <div class="col-sm-4">
+            <input type="text" name="contact" id="contact" required maxlength="15">
+          </div>
+        </div>
 
-            <select name="teacher" id="teacher">
-              <!-- {% for teacher in teachers %} -->
-                <!-- <option value="{{ teacher.id }}">{{ teacher.contact }}</option> -->
-              <!-- {% endfor %} -->
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Subject:</label>
+          <div class="col-sm-4">
+            <select name="subject" id="subject">
+              {% for subject in subjects %}
+                <option value="{{ subject.id }}">{{ subject.name }}</option>
+              {% endfor %}
             </select>
           </div>
         </div>
+
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Student Status:</label>
+          <label class="col-sm-2 col-form-label">Status:</label>
           <div class="col-sm-4">
             <input type="radio" name="is_active" id="is_active" value="true"> True
             <input type="radio" name="is_active" id="is_active" value="false"> False
@@ -62,7 +66,7 @@
           <label class="col-sm-1 col-form-label"></label>
           <div class="col-sm-4">
             <button type="submit" class="btn btn-success">Create</button>
-            <a href="{% url 'student-index-page' %}">Back</a><br><br>
+            <a href="">Back</a><br><br>
           </div>
         </div>
       </div>
