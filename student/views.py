@@ -46,16 +46,11 @@ def create(request):
     payload = request.POST
     response = requests.post(url, data = payload)
     breakpoint()
-    students = response.json()
-    if form.is_valid():
-      try:
-        form.save()
-        return redirect('show')
-      except:
-        pass
-  else:
-    form = StudentForm()
-  return render(request, 'student/index.html', {'form': form})
+    if response.status_code == 200:
+      return render(request, 'student/index.html')
+    else:
+      return render(request, 'student/new.html')
+
 
 def update(request, id):
   student = find_student(request, id)
