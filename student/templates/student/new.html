@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Update</title>
+    <!-- {% load staticfiles %} -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+  </head>
+
+  <body>
+    <form method="POST" class="post-form" action="create">
+      {% csrf_token %}
+      <div class="container">
+        <br>
+        <div class="form-group row">
+          <label class="col-sm-1 col-form-label"></label>
+          <div class="col-sm-4">
+            <h3>Create Student</h3>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Student Contact:</label>
+          <div class="col-sm-4">
+            <input type="text" name="contact" id="contact" required maxlength="15">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Student Address:</label>
+          <div class="col-sm-4">
+            <input type="text" name="address" id="address" required maxlength="254">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Student Birthdate:</label>
+          <div class="col-sm-4">
+            <input type="date" name="birth_date" id="birth_date">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Class Teacher:</label>
+          <div class="col-sm-4">
+
+            <select name="teacher" id="teacher">
+              <!-- {% for teacher in teachers %} -->
+                <!-- <option value="{{ teacher.id }}">{{ teacher.contact }}</option> -->
+              <!-- {% endfor %} -->
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Student Status:</label>
+          <div class="col-sm-4">
+            <input type="radio" name="is_active" id="is_active" value="true"> True
+            <input type="radio" name="is_active" id="is_active" value="false"> False
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-1 col-form-label"></label>
+          <div class="col-sm-4">
+            <button type="submit" class="btn btn-success">Create</button>
+            <a href="{% url 'student-index-page' %}">Back</a><br><br>
+          </div>
+        </div>
+      </div>
+    </form>
+  </body>
+
+</html>

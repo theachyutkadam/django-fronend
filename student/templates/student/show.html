@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <center><a href="/new" class="btn btn-primary">Add New</a></center>
+  <head>
+    <meta charset="UTF-8">
+    <title>Student Record</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    Id = {{ student.id }}<br><br>
+    Contact = {{ student.contact }}<br><br>
+    Address = {{ student.address }}<br><br>
+    BirthDate = {{ student.birth_date }}<br><br>
+    Status = {{ student.is_active }}<br><br>
+    <a href="{% url 'student-index-page' %}">Back</a><br><br>
+  </body>
+</html>
